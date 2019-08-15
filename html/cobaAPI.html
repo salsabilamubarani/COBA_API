@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>COBA API</title>
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+    <center>
+        <h1 class="judul">BELAJAR AMBIL DATA API</h1>
+        <table border="1" width="50%" class="tabel" id="data">
+            <tr>
+                <th id="1">id</th>
+                <th id="2">employee_name</th>
+                <th id="3">employee_salary</th>
+                <th id="4">employee_age</th>
+            </tr>
+        </table>
+    </center>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $.ajax({url: "http://dummy.restapiexample.com/api/v1/employees", success: function(result){
+            var temp = JSON.parse(result);
+            $(function(){
+                var d_employee = '';
+                $.each(temp, function(key, value){
+                    d_employee += '<tr>';
+                    d_employee += '<td>'+value.id+'</td>';
+                    d_employee += '<td>'+value.employee_name+'</td>';
+                    d_employee += '<td>'+value.employee_salary+'</td>';
+                    d_employee += '<td>'+value.employee_age+'</td>';
+                    d_employee += '<tr>';
+                });
+                $('#data').append(d_employee);
+            });
+        }});
+    </script>
+</body>
+</html>
